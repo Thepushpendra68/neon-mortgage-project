@@ -1,29 +1,25 @@
-import Application from "@/components/applixation/Application";
+'use client';
 
-export const metadata = {
-  title: "Find the Best Mortgage in Dubai-Fast & Hassle-Free Approval",
-  description: "Looking for a mortgage in Dubai? Fill out our quick form to get tailored mortgage solutions with the best rates and expert guidance.",
-  alternates: {
-        canonical: 'https://neonmortgage.com/journey',
-      },
-       openGraph: {
-    title: 'Neon Mortgage Dubai - Home Loans & Advice',
-    description: 'Get expert mortgage advice and the best loan rates in Dubai with Neon Mortgage.',
-    url: 'https://neonmortgage.com/',
-    siteName: 'Neon Mortgage',
-    images: [
-      {
-        url: 'https://neonmortgage.com/assets/images/logo.png',
-        width: 1200,
-        height: 630,
-        alt: 'Neon Mortgage Logo',
-      },
-    ],
-    type: 'website',
-  }
-};
+import Application from "@/components/applixation/Application";
+import { useEffect } from "react";
 
 export default function Journey () {
+
+    useEffect(() => {
+        // Hide header and footer when component mounts
+        const header = document.getElementById('header');
+        const footer = document.getElementById('footer');
+        
+        if (header) header.style.display = 'none';
+        if (footer) footer.style.display = 'none';
+        
+        // Show them back when component unmounts
+        return () => {
+            if (header) header.style.display = '';
+            if (footer) footer.style.display = '';
+        };
+    }, []);
+
     return (
         <div>
            <Application />
