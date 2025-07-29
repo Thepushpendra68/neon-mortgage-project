@@ -39,9 +39,21 @@ export default function Application () {
 
     const [step, setStep] = useState(1);
     
-    // Calculate percentage based on current step (9 total steps)
-    const calculatePercentage = (stepNumber) => {
-        return Math.round((stepNumber / 9) * 100);
+    // Calculate overall progress percentage based on completed steps
+    const getOverallProgress = () => {
+        // step-1 because we show progress of completed steps, not current step
+        const completedSteps = step - 1;
+        return Math.round((completedSteps / 9) * 100);
+    };
+
+    // Function to determine if a step should be visible
+    const shouldShowStep = (stepNumber) => {
+        return stepNumber <= step;
+    };
+
+    // Function to check if this is the last visible step (to hide connecting line)
+    const isLastVisibleStep = (stepNumber) => {
+        return stepNumber === step;
     };
 
     //mortgage need
@@ -216,66 +228,78 @@ export default function Application () {
                         <div className="col-sm-12 col-md-6 col-lg-4">
                             <div className="journey-left">
                                  <div className="journer-tracker">
-                                    <div className="journey-tracker-item" style={{opacity: step >= 1 ? '1' : '.3'}}>
-                                        <div className="tracket-number">
-                                           <p className="text"><strong>{calculatePercentage(1)}%</strong></p>
+                                    {shouldShowStep(1) && (
+                                        <div className="journey-tracker-item" style={{opacity: '1'}}>
+                                            <div className={`tracket-number ${isLastVisibleStep(1) ? 'last-step' : ''}`}>
+                                               <p className="text"><strong>{isLastVisibleStep(1) ? getOverallProgress() + '%' : '✓'}</strong></p>
+                                            </div>
+                                            <div className="text journey-title">Your Mortgage Needs</div>
                                         </div>
-                                        <div className="text journey-title">Your Mortgage Needs</div>
-                                    </div>
-                                    {/* <div className="journey-tracker-item" style={{opacity: step >= 2 ? '1' : '.3'}}>
-                                        <div className="tracket-number">
-                                           <p className="text"><strong>02</strong></p>
+                                    )}
+                                    {shouldShowStep(2) && (
+                                        <div className="journey-tracker-item" style={{opacity: '1'}}>
+                                            <div className={`tracket-number ${isLastVisibleStep(2) ? 'last-step' : ''}`}>
+                                               <p className="text"><strong>{isLastVisibleStep(2) ? getOverallProgress() + '%' : '✓'}</strong></p>
+                                            </div>
+                                            <div className="text journey-title">Financial Information</div>
                                         </div>
-                                        <div className="text journey-title">Property Details </div>
-                                    </div> */}
-                                    <div className="journey-tracker-item" style={{opacity: step >= 2 ? '1' : '.3'}}>
-                                        <div className="tracket-number">
-                                           <p className="text"><strong>{calculatePercentage(2)}%</strong></p>
+                                    )}
+                                    {shouldShowStep(3) && (
+                                        <div className="journey-tracker-item" style={{opacity: '1'}}>
+                                            <div className={`tracket-number ${isLastVisibleStep(3) ? 'last-step' : ''}`}>
+                                               <p className="text"><strong>{isLastVisibleStep(3) ? getOverallProgress() + '%' : '✓'}</strong></p>
+                                            </div>
+                                            <div className="text journey-title">Approximate Budget?</div>
                                         </div>
-                                        <div className="text journey-title">Financial Information</div>
-                                    </div>
-                                    <div className="journey-tracker-item" style={{opacity: step >= 3 ? '1' : '.3'}}>
-                                        <div className="tracket-number">
-                                           <p className="text"><strong>{calculatePercentage(3)}%</strong></p>
+                                    )}
+                                    {shouldShowStep(4) && (
+                                        <div className="journey-tracker-item" style={{opacity: '1'}}>
+                                            <div className={`tracket-number ${isLastVisibleStep(4) ? 'last-step' : ''}`}>
+                                               <p className="text"><strong>{isLastVisibleStep(4) ? getOverallProgress() + '%' : '✓'}</strong></p>
+                                            </div>
+                                            <div className="text journey-title">Financial Information</div>
                                         </div>
-                                        <div className="text journey-title">Approximate Budget?</div>
-                                    </div>
-                                    <div className="journey-tracker-item" style={{opacity: step >= 4 ? '1' : '.3'}}>
-                                        <div className="tracket-number">
-                                           <p className="text"><strong>{calculatePercentage(4)}%</strong></p>
+                                    )}
+                                    {shouldShowStep(5) && (
+                                        <div className="journey-tracker-item" style={{opacity: '1'}}>
+                                            <div className={`tracket-number ${isLastVisibleStep(5) ? 'last-step' : ''}`}>
+                                               <p className="text"><strong>{isLastVisibleStep(5) ? getOverallProgress() + '%' : '✓'}</strong></p>
+                                            </div>
+                                            <div className="text journey-title">Provide Some more information</div>
                                         </div>
-                                        <div className="text journey-title">Financial Information</div>
-                                    </div>
-                                    <div className="journey-tracker-item" style={{opacity: step >= 5 ? '1' : '.3'}}>
-                                        <div className="tracket-number">
-                                           <p className="text"><strong>{calculatePercentage(5)}%</strong></p>
+                                    )}
+                                    {shouldShowStep(6) && (
+                                        <div className="journey-tracker-item" style={{opacity: '1'}}>
+                                            <div className={`tracket-number ${isLastVisibleStep(6) ? 'last-step' : ''}`}>
+                                               <p className="text"><strong>{isLastVisibleStep(6) ? getOverallProgress() + '%' : '✓'}</strong></p>
+                                            </div>
+                                            <div className="text journey-title">Resident Type</div>
                                         </div>
-                                        <div className="text journey-title">Provide Some more information </div>
-                                    </div>
-                                    <div className="journey-tracker-item" style={{opacity: step >= 6 ? '1' : '.3'}}>
-                                        <div className="tracket-number">
-                                           <p className="text"><strong>{calculatePercentage(6)}%</strong></p>
+                                    )}
+                                    {shouldShowStep(7) && (
+                                        <div className="journey-tracker-item" style={{opacity: '1'}}>
+                                            <div className={`tracket-number ${isLastVisibleStep(7) ? 'last-step' : ''}`}>
+                                               <p className="text"><strong>{isLastVisibleStep(7) ? getOverallProgress() + '%' : '✓'}</strong></p>
+                                            </div>
+                                            <div className="text journey-title">Just a few more details</div>
                                         </div>
-                                        <div className="text journey-title">Resident Type</div>
-                                    </div>
-                                    <div className="journey-tracker-item" style={{opacity: step >= 7 ? '1' : '.3'}}>
-                                        <div className="tracket-number">
-                                           <p className="text"><strong>{calculatePercentage(7)}%</strong></p>
+                                    )}
+                                    {shouldShowStep(8) && (
+                                        <div className="journey-tracker-item" style={{opacity: '1'}}>
+                                            <div className={`tracket-number ${isLastVisibleStep(8) ? 'last-step' : ''}`}>
+                                               <p className="text"><strong>{isLastVisibleStep(8) ? getOverallProgress() + '%' : '✓'}</strong></p>
+                                            </div>
+                                            <div className="text journey-title">Employment Status</div>
                                         </div>
-                                        <div className="text journey-title">Just a few more details</div>
-                                    </div>
-                                    <div className="journey-tracker-item" style={{opacity: step >= 8 ? '1' : '.3'}}>
-                                        <div className="tracket-number">
-                                           <p className="text"><strong>{calculatePercentage(8)}%</strong></p>
+                                    )}
+                                    {shouldShowStep(9) && (
+                                        <div className="journey-tracker-item" style={{opacity: '1'}}>
+                                            <div className={`tracket-number ${isLastVisibleStep(9) ? 'last-step' : ''}`}>
+                                               <p className="text"><strong>{isLastVisibleStep(9) ? getOverallProgress() + '%' : '✓'}</strong></p>
+                                            </div>
+                                            <div className="text journey-title">Lets understand your finances</div>
                                         </div>
-                                        <div className="text journey-title">Employment Status</div>
-                                    </div>
-                                    <div className="journey-tracker-item" style={{opacity: step >= 9 ? '1' : '.3'}}>
-                                        <div className="tracket-number">
-                                           <p className="text"><strong>{calculatePercentage(9)}%</strong></p>
-                                        </div>
-                                        <div className="text journey-title">Lets understand your finances</div>
-                                    </div>
+                                    )}
                                  </div>
                             </div>
                         </div>

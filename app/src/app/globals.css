@@ -2180,6 +2180,9 @@ textarea{
 .tracket-number p{
   color: white;
 }
+.tracket-number.last-step::after{
+  display: none;
+}
 .form-journey{
   min-height: 530px;
 }
@@ -2581,6 +2584,9 @@ textarea{
     bottom: 50%;
     left: 40px;
     z-index: 0;
+  }
+  .tracket-number.last-step::after{
+    display: none;
   }
   .journey-tracker-item {
     display: flex;
